@@ -1,154 +1,128 @@
-# Project Setup Guide
+MediBot — AI-Powered Virtual Doctor
 
-This guide provides step-by-step instructions to set up your project environment, including the installation of FFmpeg and PortAudio across macOS, Linux, and Windows, as well as setting up a Python virtual environment using Pipenv, pip, or conda.
+MediBot is an advanced AI-powered medical assistant designed to help users describe symptoms, upload images, and receive AI-generated preliminary analysis.
+It uses vision models, LLMs, voice input, and text-to-speech output to simulate an intelligent virtual doctor.
 
-## Table of Contents
+🚀 Features
+🩺 1. Symptom Understanding (NLP)
 
-1. [Installing FFmpeg and PortAudio](#installing-ffmpeg-and-portaudio)
-   - [macOS](#macos)
-   - [Linux](#linux)
-   - [Windows](#windows)
-2. [Setting Up a Python Virtual Environment](#setting-up-a-python-virtual-environment)
-   - [Using Pipenv](#using-pipenv)
-   - [Using pip and venv](#using-pip-and-venv)
-   - [Using Conda](#using-conda)
-3. [Running the application](#project-phases-and-python-commands)
+Users can type or speak symptoms
 
-## Installing FFmpeg and PortAudio
+Groq API (LLaMA / Mixtral) used for fast medical reasoning
 
-### macOS
+Generates:
 
-1. **Install Homebrew** (if not already installed):
+Possible conditions
 
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+Causes
 
-2. **Install FFmpeg and PortAudio:**
+First-aid guidance
 
-   ```bash
-   brew install ffmpeg portaudio
-   ```
+When to visit a real doctor
 
+👁️ 2. Skin Disease Image Analysis
 
-### Linux
-For Debian-based distributions (e.g., Ubuntu):
+Uploads supported:
 
-1. **Update the package list**
+Acne
 
-```
-sudo apt update
-```
+Skin Rashes
 
-2. **Install FFmpeg and PortAudio:**
-```
-sudo apt install ffmpeg portaudio19-dev
-```
+Dandruff
 
-### Windows
+Other visible issues
 
-#### Download FFmpeg:
-1. Visit the official FFmpeg download page: [FFmpeg Downloads](https://ffmpeg.org/download.html)
-2. Navigate to the Windows builds section and download the latest static build.
+AI identifies:
 
-#### Extract and Set Up FFmpeg:
-1. Extract the downloaded ZIP file to a folder (e.g., `C:\ffmpeg`).
-2. Add the `bin` directory to your system's PATH:
-   - Search for "Environment Variables" in the Start menu.
-   - Click on "Edit the system environment variables."
-   - In the System Properties window, click on "Environment Variables."
-   - Under "System variables," select the "Path" variable and click "Edit."
-   - Click "New" and add the path to the `bin` directory (e.g., `C:\ffmpeg\bin`).
-   - Click "OK" to apply the changes.
+Condition
 
-#### Install PortAudio:
-1. Download the PortAudio binaries from the official website: [PortAudio Downloads](http://www.portaudio.com/download.html)
-2. Follow the installation instructions provided on the website.
+Severity
 
----
+Suggested care
 
-## Setting Up a Python Virtual Environment
+🎤 3. Voice Support (Optional)
 
-### Using Pipenv
-1. **Install Pipenv (if not already installed):**  
-```
-pip install pipenv
-```
+Supports:
 
-2. **Install Dependencies with Pipenv:** 
+Microphone input
 
-```
-pipenv install
-```
+AI speech recognition
 
-3. **Activate the Virtual Environment:** 
+Text-to-speech (GTTS or ElevenLabs)
 
-```
-pipenv shell
-```
+🔊 4. AI Doctor Voice Output
 
----
+Generates audio from the AI diagnosis.
 
-### Using `pip` and `venv`
-#### Create a Virtual Environment:
-```
-python -m venv venv
-```
+🌐 5. Gradio Web UI
 
-#### Activate the Virtual Environment:
-**macOS/Linux:**
-```
-source venv/bin/activate
-```
+Simple, fast, and beautiful interface.
 
-**Windows:**
-```
-venv\Scripts\activate
-```
+🧩 Project Structure
+MediBot/
+│
+├── gradio_app.py              # Main app UI
+├── brain_of_the_doctor.py     # AI decision-making logic
+├── voice_of_the_doctor.py     # TTS module (GTTS/ElevenLabs)
+├── voice_of_the_patient.py    # Speech recognition module
+│
+├── acne.jpg                   # Sample images
+├── skin_rash.jpg
+├── dandruff-optimized.webp
+│
+├── requirements.txt
+├── README.md
+├── .env.example               # Example of environment variables
+└── .gitignore
 
-#### Install Dependencies:
-```
+🔧 Installation
+1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/MediBot.git
+cd MediBot
+
+2. Install dependencies
 pip install -r requirements.txt
-```
 
----
+3. Create .env
 
-### Using Conda
-#### Create a Conda Environment:
-```
-conda create --name myenv python=3.11
-```
+Copy:
 
-#### Activate the Conda Environment:
-```
-conda activate myenv
-```
-
-#### Install Dependencies:
-```
-pip install -r requirements.txt
-```
+cp .env.example .env
 
 
-# Project Phases and Python Commands
+Add your API keys:
 
-## Phase 1: Brain of the doctor
-```
-python brain_of_the_doctor.py
-```
+GROQ_API_KEY=your_key
+ELEVENLABS_API_KEY=your_key   # optional
 
-## Phase 2: Voice of the patient
-```
-python voice_of_the_patient.py
-```
-
-## Phase 3: Voice of the doctor
-```
-python voice_of_the_doctor.py
-```
-
-## Phase 4: Setup Gradio UI
-```
+▶️ Run the App
 python gradio_app.py
-```
 
+
+The app will open in the browser.
+
+🔒 Environment Variables
+Variable	Purpose
+GROQ_API_KEY	Required for AI medical reasoning
+ELEVENLABS_API_KEY	Optional for premium voice output
+📝 Disclaimer
+
+MediBot is an educational project, not a substitute for real medical advice.
+Always consult a certified healthcare professional.
+
+🤝 Contributing
+
+Pull requests are welcome!
+If you want to add features such as:
+
+Firebase authentication
+
+Full medical knowledge base
+
+Advanced diagnosis models
+
+Feel free to open an issue.
+
+⭐ Give a Star!
+
+If this project helps you, please ⭐ the repository — it motivates further development.
